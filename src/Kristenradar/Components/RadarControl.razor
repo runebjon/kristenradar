@@ -1,0 +1,112 @@
+﻿@inject IRadarService radarService
+
+<div @ref="container" class="row" tabindex="0" @onkeypress="HandleKeyPress">
+    <form>
+        <div class="mb-3">
+            <label for="slider" class="form-label">Radar-verdi</label>
+            <input id="slider" class="form-range" type="range" max="255" min="0" @bind="CurrentValue" @bind:event="oninput" />
+        </div>
+        <div class="form-check form-switch ">
+            <InputCheckbox class="form-check-input" role="switch" id="isEnabledCheckbox" @bind-Value="IsEnabled" />
+            <label for="isEnabledCheckbox" class="form-check-label">Vis pil (V)</label>
+        </div>
+        <div class="form-check form-switch mb-3">
+            <InputCheckbox class="form-check-input" role="switch" id="isWarningCheckbox" @bind-Value="IsWarning" />
+            <label for="isWarningCheckbox" class="form-check-label">Blinkende pil (B)</label>
+        </div>
+        <div class="mb-3">
+            <button type="button" class="btn btn-danger" @onclick="Reset">Nullstill</button>
+            <a class="btn btn-primary" href="view" target="_blank">Åpne visning i nytt vindu</a>
+        </div>
+    </form>
+</div>
+
+@code {
+    private ElementReference container;
+
+    private int CurrentValue
+    {
+        get => _CurrentValue;
+        set
+        {
+            if (value != _CurrentValue)
+            {
+                _CurrentValue = value;
+                radarService.RadarValue = value;
+            }
+        }
+    }
+    private int _CurrentValue;
+
+    private bool IsEnabled
+    {
+        get => _IsEnabled;
+        set
+        {
+            if (value != _IsEnabled)
+            {
+                _IsEnabled = value;
+                radarService.IsEnabled = value;
+            }
+        }
+    }
+    private bool _IsEnabled;
+
+    private bool IsWarning
+    {
+        get => _IsWarning;
+        set
+        {
+            if (value != _IsWarning)
+            {
+                _IsWarning = value;
+                radarService.IsWarning = value;
+            }
+        }
+    }
+    private bool _IsWarning;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        UpdateStateFromService();
+    }
+
+    private void Reset()
+    {
+        radarService.Reset();
+        UpdateStateFromService();
+    }
+
+    private void UpdateStateFromService()
+    {
+        _CurrentValue = radarService.RadarValue;
+        _IsEnabled = radarService.IsEnabled;
+        _IsWarning = radarService.IsWarning;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (firstRender)
+        {
+            await container.FocusAsync();
+        }
+    }
+
+    private void HandleKeyPress(KeyboardEventArgs e)
+    {
+        switch (e.Key)
+        {
+            case "v":
+                IsEnabled = !IsEnabled;
+                break;
+            case "b":
+                IsWarning = !IsWarning;
+                break;
+            default:
+                break;
+        }
+    }
+}
