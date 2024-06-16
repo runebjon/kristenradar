@@ -1,0 +1,9 @@
+﻿@page "/view"
+@using System.Reactive.Linq
+@inject IRadarService radarService
+
+<PageTitle>Kristenradar</PageTitle>
+
+<div class="fullscreen-container">
+    <RadarDial class="w-100 h-100" IsArrowVisible="@radarService.IsEnabledObservable" IsWarning="@radarService.IsWarningObservable" Maximum="255" Minimum="0" Value="@radarService.RadarValueObservable.Select(v => (double)v)" />
+</div>

@@ -1,0 +1,8 @@
+﻿.fullscreen-container {
+    height: 90vh;
+    margin: auto;
+    margin-top: 5vh;
+    padding: 0;
+    width: 90vw;
+    overflow: clip;
+}
