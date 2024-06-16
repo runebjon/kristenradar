@@ -1,7 +1,14 @@
 ﻿@page "/"
+@using System.Reactive.Linq
+@inject IRadarService radarService
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Kristenradar - kontroll</PageTitle>
 
-<h1>Hello, world!</h1>
+<div class="container">
+    <h1>Kristenradar</h1>
+    <div class="row">
+        <RadarDial class="w-100 h-100" IsArrowVisible="@radarService.IsEnabledObservable" IsWarning="@radarService.IsWarningObservable" Maximum="255" Minimum="0" Value="@radarService.RadarValueObservable.Select(v => (double)v)" />
+    </div>
 
-Welcome to your new app.
+    <RadarControl />
+</div>
