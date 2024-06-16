@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35004.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kristenradar", "src\Kristenradar\Kristenradar.csproj", "{2E02F6EB-05BB-4731-80BE-14FC0793379D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2E02F6EB-05BB-4731-80BE-14FC0793379D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E02F6EB-05BB-4731-80BE-14FC0793379D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E02F6EB-05BB-4731-80BE-14FC0793379D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E02F6EB-05BB-4731-80BE-14FC0793379D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8386CEBD-F19C-4544-99EE-19C1A77B9CBC}
+	EndGlobalSection
+EndGlobal
